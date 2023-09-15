@@ -10,7 +10,7 @@ export default function Header({ showBackButton }: Props) {
   const navigate = useNavigation();
 
   function handleGoBack() {
-    navigate.goBack();
+    navigate.navigate("groups");
   }
 
   return (
