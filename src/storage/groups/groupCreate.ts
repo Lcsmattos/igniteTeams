@@ -6,19 +6,19 @@ import { GROUP_COLLECTION } from "@storage/storageConfig";
 import { getAllGroups } from "./groupsGetAll";
 
 export async function groupCreate(newGroup: string) {
-  try {
-    const storedGroups = await getAllGroups();
+	try {
+		const storedGroups = await getAllGroups();
 
-    const groupAlreadyExists = storedGroups.includes(newGroup);
+		const groupAlreadyExists = storedGroups.includes(newGroup);
 
-    if (groupAlreadyExists) {
-      throw new AppError("Já existe um grupo cadastrado com esse nome.");
-    }
+		if (groupAlreadyExists) {
+			throw new AppError("Já existe um grupo cadastrado com esse nome.");
+		}
 
-    const storage = JSON.stringify([...storedGroups, newGroup]);
+		const storage = JSON.stringify([...storedGroups, newGroup]);
 
-    await AsyncStorage.setItem(GROUP_COLLECTION, storage);
-  } catch (error) {
-    throw error;
-  }
+		await AsyncStorage.setItem(GROUP_COLLECTION, storage);
+	} catch (error) {
+		throw error;
+	}
 }

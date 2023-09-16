@@ -3,13 +3,15 @@ import { PLAYERS_COLLECTION } from "@storage/storageConfig";
 import { PlayersStoredDTO } from "./DTO/PlayesStoredDTO";
 
 export async function playersList(group: string) {
-  try {
-    const stored = await AsyncStorage.getItem(`${PLAYERS_COLLECTION}-${group}`);
+	try {
+		const stored = await AsyncStorage.getItem(
+			`${PLAYERS_COLLECTION}-${group}`
+		);
 
-    const players: PlayersStoredDTO[] = stored ? JSON.parse(stored) : [];
+		const players: PlayersStoredDTO[] = stored ? JSON.parse(stored) : [];
 
-    return players;
-  } catch (error) {
-    throw error;
-  }
+		return players;
+	} catch (error) {
+		throw error;
+	}
 }

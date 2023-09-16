@@ -1,13 +1,13 @@
 import { Container, Message } from "./styles";
 
 type Props = {
-  message: string;
+	message: string;
 };
 
 export default function EmptyList({ message }: Props) {
-  return (
-    <Container>
-      <Message>{message}</Message>
-    </Container>
-  );
+	return (
+		<Container>
+			<Message>{message}</Message>
+		</Container>
+	);
 }

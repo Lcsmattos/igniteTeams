@@ -4,25 +4,25 @@ import logo from "@assets/logo.png";
 import { Container, Logo, BackIcon, BackButton } from "./styles";
 
 type Props = {
-  showBackButton?: boolean;
+	showBackButton?: boolean;
 };
 
 export default function Header({ showBackButton }: Props) {
-  const navigate = useNavigation();
+	const navigate = useNavigation();
 
-  function handleGoBack() {
-    navigate.navigate("groups");
-  }
+	function handleGoBack() {
+		navigate.navigate("groups");
+	}
 
-  return (
-    <Container>
-      {showBackButton && (
-        <BackButton onPress={handleGoBack}>
-          <BackIcon />
-        </BackButton>
-      )}
+	return (
+		<Container>
+			{showBackButton && (
+				<BackButton onPress={handleGoBack}>
+					<BackIcon />
+				</BackButton>
+			)}
 
-      <Logo source={logo} />
-    </Container>
-  );
+			<Logo source={logo} />
+		</Container>
+	);
 }

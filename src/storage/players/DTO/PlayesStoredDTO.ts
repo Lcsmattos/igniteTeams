@@ -1,4 +1,4 @@
 export type PlayersStoredDTO = {
-  name: string;
-  group: string;
+	name: string;
+	group: string;
 };

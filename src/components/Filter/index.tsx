@@ -2,14 +2,14 @@ import { TouchableOpacityProps } from "react-native";
 import { Container, FilterStyleProps, Title } from "./styled";
 
 type Props = TouchableOpacityProps &
-  FilterStyleProps & {
-    title: string;
-  };
+	FilterStyleProps & {
+		title: string;
+	};
 
 export default function Filter({ title, isActive = false, ...rest }: Props) {
-  return (
-    <Container isActive={isActive} {...rest}>
-      <Title>{title}</Title>
-    </Container>
-  );
+	return (
+		<Container isActive={isActive} {...rest}>
+			<Title>{title}</Title>
+		</Container>
+	);
 }
