@@ -13,7 +13,7 @@ export default function AppRoutes() {
 
       <Screen name="new" component={NewGroups} />
 
-      <Screen name="Players" component={Players} />
+      <Screen name="players" component={Players} />
     </Navigator>
   );
 }
