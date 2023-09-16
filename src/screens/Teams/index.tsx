@@ -4,6 +4,7 @@ import { useRoute } from "@react-navigation/native";
 
 import Filter from "@components/Filter";
 import Input from "@components/Input";
+import Button from "@components/Button";
 import Header from "@components/Header";
 import Highlight from "@components/Highlight";
 import EmptyList from "@components/EmptyList";
@@ -11,7 +12,6 @@ import ButtonIcon from "@components/ButtonIcon";
 import PlayerCard from "@components/PlayerCard";
 
 import { Container, Form, HeaderList, NumberOfPlayers } from "./styles";
-import Button from "@components/Button";
 
 type RouteParams = {
   group: string;

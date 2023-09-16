@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components/native";
-
 import { Plus } from "phosphor-react-native";
 import { TextInput } from "react-native";
 

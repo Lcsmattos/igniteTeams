@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import Input from "@components/Input";
@@ -6,10 +7,11 @@ import Button from "@components/Button";
 import Header from "@components/Header";
 import Highlight from "@components/Highlight";
 
-import { Content, Container, Icon } from "./styles";
-import { groupCreate } from "@storage/groups/groupCreate";
 import { AppError } from "@utils/AppError";
-import { Alert } from "react-native";
+
+import { groupCreate } from "@storage/groups/groupCreate";
+
+import { Content, Container, Icon } from "./styles";
 
 export default function NewGroups() {
   const [teamName, setTeamName] = useState<string>("");

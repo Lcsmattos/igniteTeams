@@ -1,6 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
-import { Container, Logo, BackIcon, BackButton } from "./styles";
 import logo from "@assets/logo.png";
+
+import { Container, Logo, BackIcon, BackButton } from "./styles";
 
 type Props = {
   showBackButton?: boolean;
