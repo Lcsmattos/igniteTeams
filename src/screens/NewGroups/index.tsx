@@ -18,13 +18,13 @@ export default function NewGroups() {
 
   const navigate = useNavigation();
 
-  async function handleTeams() {
+  async function handlePlayers() {
     try {
       if (teamName.length === 0) {
         return Alert.alert("Novo Grupo", "Informe o nome da turma.");
       }
       await groupCreate(teamName);
-      navigate.navigate("teams", { group: teamName });
+      navigate.navigate("players", { group: teamName });
     } catch (error) {
       if (error instanceof AppError) {
         Alert.alert("Novo Grupo", error.message);
@@ -52,7 +52,11 @@ export default function NewGroups() {
           autoCorrect={false}
         />
 
-        <Button title="Criar" style={{ marginTop: 10 }} onPress={handleTeams} />
+        <Button
+          title="Criar"
+          style={{ marginTop: 10 }}
+          onPress={handlePlayers}
+        />
       </Content>
     </Container>
   );

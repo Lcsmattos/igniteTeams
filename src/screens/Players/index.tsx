@@ -17,7 +17,7 @@ type RouteParams = {
   group: string;
 };
 
-export default function Teams() {
+export default function Players() {
   const [team, setTeam] = useState<string>("time a");
   const [players, setPlayers] = useState<string[]>([]);
 
