@@ -13,7 +13,7 @@ import { groupCreate } from "@storage/groups/groupCreate";
 
 import { Content, Container, Icon } from "./styles";
 
-export default function NewGroups() {
+export default function NewGroup() {
 	const [teamName, setTeamName] = useState<string>("");
 
 	const navigate = useNavigation();
