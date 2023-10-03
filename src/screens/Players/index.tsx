@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
-import { Alert, FlatList } from "react-native";
-import { useRoute } from "@react-navigation/native";
+import { useEffect, useRef, useState } from "react";
+import { Alert, FlatList, TextInput } from "react-native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 import { playersAdd } from "@storage/players/playersAdd";
+import { playerRemove } from "@storage/players/playerRemove";
 import { PlayersStoredDTO } from "@storage/players/DTO/PlayesStoredDTO";
 import { playersListByGroupAndTeam } from "@storage/players/playersListByGroupAndTeam";
+import { groupRemove } from "@storage/groups/groupRemove";
 
 import Filter from "@components/Filter";
 import Input from "@components/Input";
@@ -30,6 +32,9 @@ export default function Players() {
 
 	const route = useRoute();
 	const { group } = route.params as RouteParams;
+	const navigate = useNavigation();
+
+	const newPlayerNameInputRef = useRef<TextInput>(null);
 
 	useEffect(() => {
 		fetchPlayersByTeam();
@@ -50,6 +55,8 @@ export default function Players() {
 
 		try {
 			await playersAdd(newPlayer, group);
+
+			newPlayerNameInputRef.current?.blur();
 
 			setNewPlayerName("");
 
@@ -83,6 +90,52 @@ export default function Players() {
 		}
 	}
 
+	async function handlePlayerRemove(playerName: string) {
+		try {
+			await playerRemove(playerName, group);
+
+			fetchPlayersByTeam();
+		} catch (error) {
+			console.log(error);
+			Alert.alert(
+				"Remover Jogador!",
+				"Não foi possível remover este Jogador."
+			);
+		}
+	}
+
+	async function groupRemoveByName(groupName: string) {
+		try {
+			await groupRemove(groupName);
+
+			navigate.navigate("groups");
+			return;
+		} catch (error) {
+			console.log(error);
+			Alert.alert(
+				"Remover Grupo!",
+				"Não foi possível remover este grupo."
+			);
+		}
+	}
+
+	async function handleGroupRemove() {
+		Alert.alert(
+			"Remover Grupo",
+			"Tem certeza que deseja remover este grupo?",
+			[
+				{
+					text: "Não",
+					style: "cancel",
+				},
+				{
+					text: "Sim",
+					onPress: () => groupRemoveByName(group),
+				},
+			]
+		);
+	}
+
 	return (
 		<Container>
 			<Header showBackButton />
@@ -94,10 +147,13 @@ export default function Players() {
 
 			<Form>
 				<Input
+					inputRef={newPlayerNameInputRef}
 					placeholder="Nome"
 					autoCorrect={false}
 					onChangeText={setNewPlayerName}
 					value={newPlayerName}
+					onSubmitEditing={handleAddPlayer}
+					returnKeyType="done"
 				/>
 				<ButtonIcon icon="add" onPress={handleAddPlayer} />
 			</Form>
@@ -126,7 +182,7 @@ export default function Players() {
 				renderItem={(item) => (
 					<PlayerCard
 						playerName={item.item.name}
-						onRemove={() => {}}
+						onRemove={() => handlePlayerRemove(item.item.name)}
 					/>
 				)}
 				ListEmptyComponent={() => (
@@ -138,7 +194,11 @@ export default function Players() {
 				]}
 			/>
 
-			<Button title="Excluir Turma" type="SECONDARY" />
+			<Button
+				title="Excluir Turma"
+				type="SECONDARY"
+				onPress={handleGroupRemove}
+			/>
 		</Container>
 	);
 }
